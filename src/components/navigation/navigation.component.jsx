@@ -6,7 +6,7 @@ import CrwnLogo from '../../assets/crown.svg'
 export default function Navigation() {
   return (
     <nav className='navigation'>
-      <Link className='logo-container' to='/'>
+      <Link to='/' className='logo-container'>
         <img
           src={CrwnLogo}
           alt='Crwn logo'
@@ -14,10 +14,10 @@ export default function Navigation() {
         />
       </Link>
       <div className='nav-links-container'>
-        <Link className='nav-link' to='/shop'>
+        <Link to='/shop' className='nav-link'>
           SHOP
         </Link>
-        <Link className='nav-link' to='/sign-in'>
+        <Link to='/sign-in' className='nav-link'>
           SIGN IN
         </Link>
       </div>
