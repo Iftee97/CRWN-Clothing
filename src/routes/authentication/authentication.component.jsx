@@ -4,6 +4,8 @@ import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 
 import SignUpForm from "../../components/sign-up-form/sign-up-form.component"
 
+import './authentication.styles.scss'
+
 export default function SignIn() {
   const loginWithGoogle = async () => {
     try {
@@ -28,7 +30,7 @@ export default function SignIn() {
   }
 
   return (
-    <div>
+    <div className="">
       <h1>
         Sign In Page
       </h1>

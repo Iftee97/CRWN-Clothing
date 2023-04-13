@@ -85,7 +85,6 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-
         <FormInput
           label='Email'
           type='email'
@@ -95,7 +94,6 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-
         <FormInput
           label='Password'
           type='password'
@@ -105,7 +103,6 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-
         <FormInput
           label='Confirm Password'
           type='password'
@@ -115,12 +112,7 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-
-        <Button
-          type='submit'
-          buttonType='inverted'
-          disabled={loading}
-        >
+        <Button type='submit' disabled={loading}>
           {loading ? 'Signing Up...' : 'Sign Up'}
         </Button>
       </form>
