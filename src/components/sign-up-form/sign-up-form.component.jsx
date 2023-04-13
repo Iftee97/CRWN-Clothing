@@ -4,6 +4,7 @@ import { db, auth } from '../../utils/firebase/firebase.utils'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 
+import FormInput from '../../components/form-input/form-input.component'
 import './sign-up-form.styles.scss'
 
 export default function SignUpForm() {
@@ -50,6 +51,7 @@ export default function SignUpForm() {
       setLoading(false)
     } catch (error) {
       console.log('error creating user!', error.message)
+      alert(error.message)
       setLoading(false)
     } finally {
       setFormFields({
@@ -64,7 +66,7 @@ export default function SignUpForm() {
   }
 
   return (
-    <div>
+    <div className='sign-up-container'>
       <h2>
         Don't have an account?
       </h2>
@@ -72,54 +74,42 @@ export default function SignUpForm() {
         Sign up with your email and password
       </span>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="displayName">
-          Username
-        </label>
-        <input
-          type="text"
+        <FormInput
+          label='Username'
+          type='text'
           id='displayName'
           name='displayName'
           value={formFields.displayName}
           onChange={handleChange}
           required
         />
-
-        <label htmlFor="email">
-          Email
-        </label>
-        <input
-          type="email"
+        <FormInput
+          label='Email'
+          type='email'
           id='email'
           name='email'
           value={formFields.email}
           onChange={handleChange}
           required
         />
-
-        <label htmlFor="password">
-          Password
-        </label>
-        <input
-          type="password"
+        <FormInput
+          label='Password'
+          type='password'
           id='password'
           name='password'
           value={formFields.password}
           onChange={handleChange}
           required
         />
-
-        <label htmlFor="confirmPassword">
-          Confirm Password
-        </label>
-        <input
-          type="password"
+        <FormInput
+          label='Confirm Password'
+          type='password'
           id='confirmPassword'
           name='confirmPassword'
           value={formFields.confirmPassword}
           onChange={handleChange}
           required
         />
-
         <button type='submit' disabled={loading}>
           {loading ? 'Signing up...' : 'Sign up'}
         </button>
