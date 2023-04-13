@@ -11,5 +11,11 @@
     display: flex;
     align-items: center;
     gap: 12px;
+
+    .google-button-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
   }
 }

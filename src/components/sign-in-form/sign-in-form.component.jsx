@@ -10,6 +10,8 @@ import Button from '../button/button.component'
 
 import './sign-in-form.styles.scss'
 
+import { FaGoogle } from "react-icons/fa"
+
 export default function SignInForm() {
   const navigate = useNavigate()
   const [formFields, setFormFields] = useState({
@@ -110,7 +112,12 @@ export default function SignInForm() {
             buttonType='google'
             onClick={signInWithGoogle}
           >
-            Sign in with Google
+            <div className='google-button-container'>
+              <span>
+                Sign in with Google
+              </span>
+              <FaGoogle />
+            </div>
           </Button>
         </div>
       </form>
