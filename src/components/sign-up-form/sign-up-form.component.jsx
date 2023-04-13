@@ -4,7 +4,9 @@ import { db, auth } from '../../utils/firebase/firebase.utils'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 
-import FormInput from '../../components/form-input/form-input.component'
+import FormInput from '../form-input/form-input.component'
+import Button from '../button/button.component'
+
 import './sign-up-form.styles.scss'
 
 export default function SignUpForm() {
@@ -83,6 +85,7 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
+
         <FormInput
           label='Email'
           type='email'
@@ -92,6 +95,7 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
+
         <FormInput
           label='Password'
           type='password'
@@ -101,6 +105,7 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
+
         <FormInput
           label='Confirm Password'
           type='password'
@@ -110,9 +115,14 @@ export default function SignUpForm() {
           onChange={handleChange}
           required
         />
-        <button type='submit' disabled={loading}>
-          {loading ? 'Signing up...' : 'Sign up'}
-        </button>
+
+        <Button
+          type='submit'
+          buttonType='inverted'
+          disabled={loading}
+        >
+          {loading ? 'Signing Up...' : 'Sign Up'}
+        </Button>
       </form>
     </div>
   )
