@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 import { db, auth } from '../../utils/firebase/firebase.utils'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
@@ -10,6 +11,8 @@ import Button from '../button/button.component'
 import './sign-up-form.styles.scss'
 
 export default function SignUpForm() {
+  const navigate = useNavigate()
+
   const [formFields, setFormFields] = useState({
     displayName: '',
     email: '',
@@ -40,10 +43,9 @@ export default function SignUpForm() {
 
       const response = await createUserWithEmailAndPassword(auth, email, password)
       const user = response.user
-      console.log('signed up user:', user)
+      console.log('signed up user: >>>>>>>>>>>>>>>>', user)
 
       await updateProfile(user, { displayName }) // update user profile with displayName
-
       await setDoc(doc(db, 'users', user.uid), {
         email: user.email,
         displayName: user.displayName,
@@ -62,6 +64,7 @@ export default function SignUpForm() {
         password: '',
         confirmPassword: '',
       }) // reset form fields
+      navigate('/') // redirect to home
     }
 
     console.log('form submitted: >>>>>>>>>>>', formFields)
@@ -88,7 +91,7 @@ export default function SignUpForm() {
         <FormInput
           label='Email'
           type='email'
-          id='email'
+          id='sign-up-email'
           name='email'
           value={formFields.email}
           onChange={handleChange}
@@ -97,7 +100,7 @@ export default function SignUpForm() {
         <FormInput
           label='Password'
           type='password'
-          id='password'
+          id='sign-up-password'
           name='password'
           value={formFields.password}
           onChange={handleChange}
