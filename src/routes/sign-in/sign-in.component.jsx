@@ -2,6 +2,8 @@ import { db, auth } from "../../utils/firebase/firebase.utils"
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component"
+
 export default function SignIn() {
   const loginWithGoogle = async () => {
     try {
@@ -33,6 +35,7 @@ export default function SignIn() {
       <button onClick={loginWithGoogle}>
         Sign in with Google
       </button>
+      <SignUpForm />
     </div>
   )
 }
