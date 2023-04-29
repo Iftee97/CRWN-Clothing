@@ -11,7 +11,7 @@ import CrwnLogo from '../../assets/crown.svg'
 export default function Navigation() {
   const { user, dispatch } = useContext(UserContext)
 
-  async function handleSignout() {
+  async function handleSignOut() {
     try {
       await signOut(auth)
       dispatch({ type: 'LOGOUT' })
@@ -35,7 +35,7 @@ export default function Navigation() {
         </Link>
         {user ? (
           <>
-            <span className='nav-link' onClick={handleSignout}>
+            <span className='nav-link' onClick={handleSignOut}>
               SIGN OUT
             </span>
             <span className='nav-link'>
