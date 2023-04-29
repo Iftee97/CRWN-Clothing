@@ -59,12 +59,11 @@ export default function SignInForm() {
       const provider = new GoogleAuthProvider()
       const response = await signInWithPopup(auth, provider)
       const user = response.user
-      console.log('signed in user:', user)
+      console.log('signed in user: >>>>>>>>>>>>>>>>', user)
       dispatch({ type: 'LOGIN', payload: user })
 
       // // Check for user in firestore db -- if user doesn't exist in db, add user to db
       const docSnapshot = await getDoc(doc(db, 'users', user.uid))
-
       if (!docSnapshot.exists()) {
         await setDoc(doc(db, 'users', user.uid), {
           email: user.email,
