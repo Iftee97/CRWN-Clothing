@@ -38,8 +38,11 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       dispatch({ type: 'AUTH_IS_READY', payload: user })
-      unsubscribe() // unsubscribe -- stop listening for auth state changes once we get the user
     })
+
+    return () => {
+      unsubscribe() // unsubscribe -- stop listening (watching) for auth state changes once we get the user
+    }
   }, [])
 
   console.log('UserContext state: >>>>>>>>>>>', state)
