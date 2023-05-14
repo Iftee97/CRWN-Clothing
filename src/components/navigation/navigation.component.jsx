@@ -39,7 +39,14 @@ export default function Navigation() {
               SIGN OUT
             </span>
             <span className='nav-link'>
-              {user.displayName && `Welcome, ${user.displayName}`}
+              {user.displayName && (
+                <>
+                  Welcome, {' '}
+                  <span className='nav-link--displayName'>
+                    {user.displayName}
+                  </span>
+                </>
+              )}
             </span>
           </>
         ) : (
@@ -48,6 +55,6 @@ export default function Navigation() {
           </Link>
         )}
       </div>
-    </nav>
+    </nav >
   )
 }
