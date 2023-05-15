@@ -18,6 +18,10 @@
     .nav-link {
       padding: 10px 15px;
       cursor: pointer;
+
+      &--displayName {
+        font-weight: 600;
+      }
     }
   }
 }

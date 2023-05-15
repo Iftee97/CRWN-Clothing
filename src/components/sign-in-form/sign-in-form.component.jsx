@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
+import { UserContext } from '../../context/user.context'
 
 import { db, auth } from '../../utils/firebase/firebase.utils'
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
@@ -19,6 +20,7 @@ export default function SignInForm() {
     password: '',
   })
   const [loading, setLoading] = useState(false)
+  const { dispatch } = useContext(UserContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -37,6 +39,7 @@ export default function SignInForm() {
       const response = await signInWithEmailAndPassword(auth, email, password)
       const user = response.user
       console.log('signed in user: >>>>>>>>>>>>>>>>', user)
+      dispatch({ type: 'LOGIN', payload: user })
       setLoading(false)
     } catch (error) {
       console.log('error signing in user!', error.message)
@@ -56,11 +59,11 @@ export default function SignInForm() {
       const provider = new GoogleAuthProvider()
       const response = await signInWithPopup(auth, provider)
       const user = response.user
-      console.log('signed in user:', user)
+      console.log('signed in user: >>>>>>>>>>>>>>>>', user)
+      dispatch({ type: 'LOGIN', payload: user })
 
       // // Check for user in firestore db -- if user doesn't exist in db, add user to db
       const docSnapshot = await getDoc(doc(db, 'users', user.uid))
-
       if (!docSnapshot.exists()) {
         await setDoc(doc(db, 'users', user.uid), {
           email: user.email,

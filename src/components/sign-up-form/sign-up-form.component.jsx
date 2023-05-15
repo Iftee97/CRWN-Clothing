@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
+import { UserContext } from '../../context/user.context'
 
 import { db, auth } from '../../utils/firebase/firebase.utils'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
@@ -12,7 +13,6 @@ import './sign-up-form.styles.scss'
 
 export default function SignUpForm() {
   const navigate = useNavigate()
-
   const [formFields, setFormFields] = useState({
     displayName: '',
     email: '',
@@ -20,6 +20,7 @@ export default function SignUpForm() {
     confirmPassword: '',
   })
   const [loading, setLoading] = useState(false)
+  const { dispatch } = useContext(UserContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -44,6 +45,7 @@ export default function SignUpForm() {
       const response = await createUserWithEmailAndPassword(auth, email, password)
       const user = response.user
       console.log('signed up user: >>>>>>>>>>>>>>>>', user)
+      dispatch({ type: 'LOGIN', payload: user })
 
       await updateProfile(user, { displayName }) // update user profile with displayName
       await setDoc(doc(db, 'users', user.uid), {
