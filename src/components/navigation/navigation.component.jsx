@@ -1,12 +1,18 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/user.context'
+import { UserContext } from '../../contexts/user.context'
 
+// firebase imports
 import { auth } from '../../utils/firebase/firebase.utils'
 import { signOut } from 'firebase/auth'
 
+// styles and icons
 import './navigation.styles.scss'
 import CrwnLogo from '../../assets/crown.svg'
+
+// components
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 
 export default function Navigation() {
   const { user, dispatch } = useContext(UserContext)
@@ -54,7 +60,9 @@ export default function Navigation() {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
+        <CartDropdown />
       </div>
-    </nav >
+    </nav>
   )
 }

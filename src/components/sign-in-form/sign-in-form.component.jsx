@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom"
-import { UserContext } from '../../context/user.context'
+import { UserContext } from '../../contexts/user.context'
 
 import { db, auth } from '../../utils/firebase/firebase.utils'
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
