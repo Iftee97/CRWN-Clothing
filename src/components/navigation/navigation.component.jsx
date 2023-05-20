@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/user.context'
+import { CartContext } from '../../contexts/cart.context'
 
 // firebase imports
 import { auth } from '../../utils/firebase/firebase.utils'
@@ -16,6 +17,7 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 
 export default function Navigation() {
   const { user, dispatch } = useContext(UserContext)
+  const { isCartOpen } = useContext(CartContext)
 
   async function handleSignOut() {
     try {
@@ -61,7 +63,7 @@ export default function Navigation() {
           </Link>
         )}
         <CartIcon />
-        <CartDropdown />
+        {isCartOpen && <CartDropdown />}
       </div>
     </nav>
   )

@@ -4,7 +4,7 @@ import products from '../shop-data.json'
 
 export const ProductsContext = createContext()
 
-export const ProductsContextProvider = ({ children }) => {
+export function ProductsContextProvider({ children }) {
   return (
     <ProductsContext.Provider value={{ products }}>
       {children}
