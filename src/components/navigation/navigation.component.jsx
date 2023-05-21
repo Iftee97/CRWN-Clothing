@@ -1,15 +1,23 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/user.context'
+import { UserContext } from '../../contexts/user.context'
+import { CartContext } from '../../contexts/cart.context'
 
+// firebase imports
 import { auth } from '../../utils/firebase/firebase.utils'
 import { signOut } from 'firebase/auth'
 
+// styles and icons
 import './navigation.styles.scss'
 import CrwnLogo from '../../assets/crown.svg'
 
+// components
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropdown from '../cart-dropdown/cart-dropdown.component'
+
 export default function Navigation() {
   const { user, dispatch } = useContext(UserContext)
+  const { isCartOpen } = useContext(CartContext)
 
   async function handleSignOut() {
     try {
@@ -54,7 +62,9 @@ export default function Navigation() {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
+        {isCartOpen && <CartDropdown />}
       </div>
-    </nav >
+    </nav>
   )
 }

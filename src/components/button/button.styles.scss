@@ -12,6 +12,11 @@
   cursor: pointer;
   display: inline-block;
 
+  // This is a CSS trick to center the button text
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background-color: white;
     color: black;
