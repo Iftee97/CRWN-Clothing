@@ -61,6 +61,19 @@ export function CartContextProvider({ children }) {
     setCartItems(cartItems.filter((cartItem) => cartItem.id !== productToRemove.id))
   }
 
+  function getCartTotal() {
+    let total = 0
+    for (const cartItem of cartItems) {
+      total += cartItem.quantity * cartItem.price
+    }
+    return total
+
+    // // refactor to use reduce
+    // return cartItems.reduce((accumulatedTotal, cartItem) => (
+    //   accumulatedTotal + cartItem.quantity * cartItem.price
+    // ), 0)
+  }
+
   console.log('cartItems: >>>>>>>>>>', cartItems)
 
   return (
@@ -75,6 +88,7 @@ export function CartContextProvider({ children }) {
         increaseQuantity,
         decreaseQuantity,
         removeItemFromCart,
+        getCartTotal,
       }}
     >
       {children}
