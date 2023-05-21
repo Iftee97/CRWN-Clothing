@@ -6,11 +6,9 @@ export default function CategoryPreview({ title, products }) {
   return (
     <div className='category-preview-container'>
       <h2>
-        <span className='title'>
-          <Link to={`/shop/${title}`}>
-            {title.toUpperCase()}
-          </Link>
-        </span>
+        <Link className='title' to={`/shop/${title}`}>
+          {title.toUpperCase()}
+        </Link>
       </h2>
       <div className='preview'>
         {products?.slice(0, 4).map((product) => (
