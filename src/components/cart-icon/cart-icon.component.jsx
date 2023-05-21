@@ -5,7 +5,12 @@ import './cart-icon.styles.scss'
 import ShoppingBagIcon from '../../assets/shopping-bag.svg'
 
 export default function CartIcon() {
-  const { isCartOpen, setIsCartOpen, getCartItemsCount } = useContext(CartContext)
+  const {
+    isCartOpen,
+    setIsCartOpen,
+    cartItemsCount,
+    getCartItemsCount
+  } = useContext(CartContext)
 
   function toggleCart() {
     setIsCartOpen(!isCartOpen)
