@@ -27,11 +27,9 @@ export function CartContextProvider({ children }) {
   }
 
   function getCartItemsCount() {
-    return cartItems.reduce(
-      (accumulatedQuantity, cartItem) =>
-        accumulatedQuantity + cartItem.quantity,
-      0
-    )
+    return cartItems.reduce((accumulatedQuantity, cartItem) => (
+      accumulatedQuantity + cartItem.quantity
+    ), 0)
   }
 
   console.log('cartItems: >>>>>>>>>>', cartItems)
