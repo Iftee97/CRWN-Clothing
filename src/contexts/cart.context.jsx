@@ -8,8 +8,6 @@ export function CartContextProvider({ children }) {
 
   function addItemToCart(productToAdd) {
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToAdd.id)
-
-    // If it is, increase the quantity, otherwise add it to the cart
     if (existingCartItem) {
       setCartItems(
         cartItems.map((cartItem) => cartItem.id === productToAdd.id
