@@ -10,10 +10,6 @@ export default function CartDropdown() {
   const { cartItems } = useContext(CartContext)
   const navigate = useNavigate()
 
-  function redirectToCheckout() {
-    navigate('/checkout')
-  }
-
   return (
     <div className='cart-dropdown-container'>
       <div className='cart-items'>
@@ -21,7 +17,7 @@ export default function CartDropdown() {
           <CartItem key={index} cartItem={cartItem} />
         ))}
       </div>
-      <Button onClick={redirectToCheckout}>
+      <Button onClick={() => navigate('/checkout')}>
         GO TO CHECKOUT
       </Button>
     </div>

@@ -21,7 +21,21 @@ export default function CheckoutItem({ cartItem }) {
         {name}
       </span>
       <span className='quantity'>
-        {quantity}
+        <div
+          className='arrow'
+          onClick={() => decreaseQuantity(cartItem)}
+        >
+          &#10094;
+        </div>
+        <span className='value'>
+          {quantity}
+        </span>
+        <div
+          className='arrow'
+          onClick={() => increaseQuantity(cartItem)}
+        >
+          &#10095;
+        </div>
       </span>
       <span className='price'>
         ${price}
