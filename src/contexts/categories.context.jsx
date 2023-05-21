@@ -6,10 +6,10 @@ import { collection, writeBatch, doc, query, getDocs } from "firebase/firestore"
 
 import SHOP_DATA from '../shop-data.js'
 
-export const ProductsContext = createContext()
+export const CategoriesContext = createContext()
 
-export function ProductsContextProvider({ children }) {
-  const [products, setProducts] = useState([])
+export function CategoriesContextProvider({ children }) {
+  const [categories, setCategories] = useState([])
 
   // // add shop data to firestore database (run once, because it's already in the database)
   // useEffect(() => {
@@ -36,19 +36,19 @@ export function ProductsContextProvider({ children }) {
     const querySnapshot = getDocs(q)
     querySnapshot.then((snapshot) => {
       const shopData = snapshot.docs.map((doc) => doc.data())
-      setProducts(shopData)
+      setCategories(shopData)
     })
   }, [])
 
   useEffect(() => {
-    if (products?.length > 0) {
-      console.log('products: >>>>>>>>>>', products)
+    if (categories?.length > 0) {
+      console.log('categories (context): >>>>>>>>>>', categories)
     }
-  }, [products])
+  }, [categories])
 
   return (
-    <ProductsContext.Provider value={{ products }}>
+    <CategoriesContext.Provider value={{ categories }}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   )
 }
