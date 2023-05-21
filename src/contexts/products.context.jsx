@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react"
 
 // firebase imports
 import { db } from "../utils/firebase/firebase.utils.js"
-import { collection, writeBatch, doc } from "firebase/firestore"
+import { collection, writeBatch, doc, query, getDocs } from "firebase/firestore"
 
 import SHOP_DATA from '../shop-data.js'
 
@@ -30,13 +30,24 @@ export function ProductsContextProvider({ children }) {
   //   console.log('done')
   // }
 
+  // get shop data from firestore database -- not necessarily real-time data
+  useEffect(() => {
+    const q = query(collection(db, "collections"))
+    const querySnapshot = getDocs(q)
+    querySnapshot.then((snapshot) => {
+      const shopData = snapshot.docs.map((doc) => doc.data())
+      setProducts(shopData)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (products?.length > 0) {
+      console.log('products: >>>>>>>>>>', products)
+    }
+  }, [products])
+
   return (
-    <ProductsContext.Provider
-      value={{
-        products,
-        setProducts
-      }}
-    >
+    <ProductsContext.Provider value={{ products }}>
       {children}
     </ProductsContext.Provider>
   )
