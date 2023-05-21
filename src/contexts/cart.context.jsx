@@ -23,16 +23,9 @@ export function CartContextProvider({ children }) {
   }
 
   function getCartItemsCount() {
-    let totalQuantity = 0
-    for (const cartItem of cartItems) {
-      totalQuantity += cartItem.quantity
-    }
-    return totalQuantity
-
-    // // refactor to use reduce
-    // return cartItems.reduce((accumulatedQuantity, cartItem) => (
-    //   accumulatedQuantity + cartItem.quantity
-    // ), 0)
+    return cartItems.reduce((accumulatedQuantity, cartItem) => (
+      accumulatedQuantity + cartItem.quantity
+    ), 0)
   }
 
   function increaseQuantity(productToIncrease) {
@@ -62,16 +55,9 @@ export function CartContextProvider({ children }) {
   }
 
   function getCartTotal() {
-    let total = 0
-    for (const cartItem of cartItems) {
-      total += cartItem.quantity * cartItem.price
-    }
-    return total
-
-    // // refactor to use reduce
-    // return cartItems.reduce((accumulatedTotal, cartItem) => (
-    //   accumulatedTotal + cartItem.quantity * cartItem.price
-    // ), 0)
+    return cartItems.reduce((accumulatedTotal, cartItem) => (
+      accumulatedTotal + cartItem.quantity * cartItem.price
+    ), 0)
   }
 
   console.log('cartItems: >>>>>>>>>>', cartItems)
