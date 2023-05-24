@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 
 import FormInput from '../form-input/form-input.component'
-import Button from '../button/button.component'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
 import './sign-in-form.styles.scss'
 
@@ -112,7 +112,7 @@ export default function SignInForm() {
           </Button>
           <Button
             type='button'
-            buttonType='google'
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={signInWithGoogle}
           >
             <div className='google-button-container'>

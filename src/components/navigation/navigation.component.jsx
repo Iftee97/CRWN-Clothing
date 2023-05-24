@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { UserContext } from '../../contexts/user.context'
 import { CartContext } from '../../contexts/cart.context'
 
@@ -8,7 +7,12 @@ import { auth } from '../../utils/firebase/firebase.utils'
 import { signOut } from 'firebase/auth'
 
 // styles and icons
-import './navigation.styles.scss'
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinks,
+  NavLink,
+} from './navigation.styles.js'
 import CrwnLogo from '../../assets/crown.svg'
 
 // components
@@ -29,42 +33,42 @@ export default function Navigation() {
   }
 
   return (
-    <nav className='navigation'>
-      <Link to='/' className='logo-container'>
+    <NavigationContainer>
+      <LogoContainer to='/'>
         <img
           src={CrwnLogo}
           alt='Crwn logo'
           className='logo'
         />
-      </Link>
-      <div className='nav-links-container'>
-        <Link to='/shop' className='nav-link'>
+      </LogoContainer>
+      <NavLinks>
+        <NavLink to='/shop'>
           SHOP
-        </Link>
+        </NavLink>
         {user ? (
           <>
-            <span className='nav-link' onClick={handleSignOut}>
+            <NavLink as='span' onClick={handleSignOut}>
               SIGN OUT
-            </span>
-            <span className='nav-link'>
+            </NavLink>
+            <NavLink as='span'>
               {user.displayName && (
                 <>
                   Welcome, {' '}
-                  <span className='nav-link--displayName'>
+                  <span style={{ fontWeight: 600 }}>
                     {user.displayName}
                   </span>
                 </>
               )}
-            </span>
+            </NavLink>
           </>
         ) : (
-          <Link to='/auth' className='nav-link'>
+          <NavLink to='/auth'>
             SIGN IN
-          </Link>
+          </NavLink>
         )}
         <CartIcon />
         {isCartOpen && <CartDropdown />}
-      </div>
-    </nav>
+      </NavLinks>
+    </NavigationContainer>
   )
 }
