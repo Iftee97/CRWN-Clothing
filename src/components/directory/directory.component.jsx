@@ -1,6 +1,6 @@
 import DirectoryItem from "../directory-item/directory-item.component"
 
-import './directory.styles.scss'
+import { DirectoryMenuContainer } from './directory.styles.js'
 
 export default function Directory() {
   const categories = [
@@ -32,10 +32,10 @@ export default function Directory() {
   ]
 
   return (
-    <div className="directory-container">
+    <DirectoryMenuContainer>
       {categories.map((category) => (
         <DirectoryItem key={category.id} category={category} />
       ))}
-    </div>
+    </DirectoryMenuContainer>
   )
 }

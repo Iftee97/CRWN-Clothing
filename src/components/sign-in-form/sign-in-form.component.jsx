@@ -9,7 +9,11 @@ import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 import FormInput from '../form-input/form-input.component'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
-import './sign-in-form.styles.scss'
+import {
+  SignInContainer,
+  ButtonsContainer,
+  GoogleButtonContainer,
+} from './sign-in-form.styles.js'
 
 import { FaGoogle } from "react-icons/fa"
 
@@ -80,7 +84,7 @@ export default function SignInForm() {
   }
 
   return (
-    <div className='sign-in-container'>
+    <SignInContainer>
       <h2>
         Already have an account?
       </h2>
@@ -106,7 +110,7 @@ export default function SignInForm() {
           onChange={handleChange}
           required
         />
-        <div className='buttons-container'>
+        <ButtonsContainer>
           <Button type='submit' disabled={loading}>
             {loading ? 'Signing In...' : 'Sign In'}
           </Button>
@@ -115,15 +119,15 @@ export default function SignInForm() {
             buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={signInWithGoogle}
           >
-            <div className='google-button-container'>
+            <GoogleButtonContainer>
               <span>
                 Sign in with Google
               </span>
               <FaGoogle />
-            </div>
+            </GoogleButtonContainer>
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   )
 }

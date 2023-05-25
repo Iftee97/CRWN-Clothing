@@ -1,14 +1,14 @@
 import { useContext } from 'react'
 import { CategoriesContext } from '../../contexts/categories.context'
 import CategoryPreview from '../../components/category-preview/category-preview.component'
-import './shop.styles.scss'
+import { ShopContainer, LoadingText } from './shop.styles.js'
 
 export default function Shop() {
   const { categories } = useContext(CategoriesContext)
   console.log('categories: >>>>>>>>>', categories)
 
   return (
-    <div className='shop-container'>
+    <ShopContainer>
       {categories?.length > 0 ? (
         <>
           {categories.map((category) => (
@@ -20,10 +20,10 @@ export default function Shop() {
           ))}
         </>
       ) : (
-        <h2>
+        <LoadingText>
           Loading...
-        </h2>
+        </LoadingText>
       )}
-    </div>
+    </ShopContainer>
   )
 }

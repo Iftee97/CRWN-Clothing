@@ -9,7 +9,7 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
 
-import './sign-up-form.styles.scss'
+import { SignUpContainer } from './sign-up-form.styles.js'
 
 export default function SignUpForm() {
   const navigate = useNavigate()
@@ -73,7 +73,7 @@ export default function SignUpForm() {
   }
 
   return (
-    <div className='sign-up-container'>
+    <SignUpContainer>
       <h2>
         Don't have an account?
       </h2>
@@ -121,6 +121,6 @@ export default function SignUpForm() {
           {loading ? 'Signing Up...' : 'Sign Up'}
         </Button>
       </form>
-    </div>
+    </SignUpContainer>
   )
 }
