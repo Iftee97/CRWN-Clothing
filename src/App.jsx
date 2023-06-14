@@ -29,3 +29,5 @@ export default function App() {
     </>
   )
 }
+
+// todo: associate a user (userId) with a cart in the database on checkout

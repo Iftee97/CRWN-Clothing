@@ -5,18 +5,27 @@ export const CartContext = createContext()
 
 export function CartContextProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false)
-  // const [cartItems, setCartItems] = useState([])
-  const [cartItems, setCartItems] = useLocalStorage('cartItems', [])
+  // const [cartItems, setCartItems] = useState([]) // without persisting to localStorage
+  const [cartItems, setCartItems] = useLocalStorage('cartItems', []) // with persisting to localStorage
+
+  // function addItemToCart(productToAdd) {
+  //   const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToAdd.id)
+  //   if (existingCartItem) {
+  //     setCartItems(
+  //       cartItems.map((cartItem) => cartItem.id === productToAdd.id
+  //         ? { ...cartItem, quantity: cartItem.quantity + 1 }
+  //         : cartItem
+  //       )
+  //     )
+  //   } else {
+  //     setCartItems([...cartItems, { ...productToAdd, quantity: 1 }])
+  //   }
+  // }
 
   function addItemToCart(productToAdd) {
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToAdd.id)
     if (existingCartItem) {
-      setCartItems(
-        cartItems.map((cartItem) => cartItem.id === productToAdd.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-        )
-      )
+      increaseQuantity(productToAdd)
     } else {
       setCartItems([...cartItems, { ...productToAdd, quantity: 1 }])
     }
