@@ -40,11 +40,11 @@ export function CategoriesContextProvider({ children }) {
     })
   }, [])
 
-  useEffect(() => {
-    if (categories?.length > 0) {
-      console.log('categories (context): >>>>>>>>>>', categories)
-    }
-  }, [categories])
+  // useEffect(() => {
+  //   if (categories?.length > 0) {
+  //     console.log('categories (context): >>>>>>>>>>', categories)
+  //   }
+  // }, [categories])
 
   return (
     <CategoriesContext.Provider value={{ categories }}>

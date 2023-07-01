@@ -12,6 +12,9 @@ import Category from './routes/category/category.component'
 export default function App() {
   const { authIsReady, user } = useContext(UserContext)
 
+  // console.log('STRIPE_PUBLISHABLE_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY)
+  // console.log('STRIPE_SECRET_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_SECRET_KEY)
+
   return (
     <>
       {authIsReady && (
