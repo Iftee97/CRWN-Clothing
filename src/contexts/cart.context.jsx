@@ -6,21 +6,7 @@ export const CartContext = createContext()
 export function CartContextProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false)
   // const [cartItems, setCartItems] = useState([]) // without persisting to localStorage
-  const [cartItems, setCartItems] = useLocalStorage('cartItems', []) // with persisting to localStorage
-
-  // function addItemToCart(productToAdd) {
-  //   const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToAdd.id)
-  //   if (existingCartItem) {
-  //     setCartItems(
-  //       cartItems.map((cartItem) => cartItem.id === productToAdd.id
-  //         ? { ...cartItem, quantity: cartItem.quantity + 1 }
-  //         : cartItem
-  //       )
-  //     )
-  //   } else {
-  //     setCartItems([...cartItems, { ...productToAdd, quantity: 1 }])
-  //   }
-  // }
+  const [cartItems, setCartItems] = useLocalStorage('cartItems', []) // with persisting to localStorage under the key 'cartItems' with an initial value of []
 
   function addItemToCart(productToAdd) {
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToAdd.id)
@@ -29,12 +15,6 @@ export function CartContextProvider({ children }) {
     } else {
       setCartItems([...cartItems, { ...productToAdd, quantity: 1 }])
     }
-  }
-
-  function getCartItemsCount() {
-    return cartItems.reduce((accumulatedQuantity, cartItem) => (
-      accumulatedQuantity + cartItem.quantity
-    ), 0)
   }
 
   function increaseQuantity(productToIncrease) {
@@ -69,7 +49,13 @@ export function CartContextProvider({ children }) {
     ), 0)
   }
 
-  console.log('cartItems: >>>>>>>>>>', cartItems)
+  function getCartItemsCount() {
+    return cartItems.reduce((accumulatedQuantity, cartItem) => (
+      accumulatedQuantity + cartItem.quantity
+    ), 0)
+  }
+
+  // console.log('cartItems: >>>>>>>>>>', cartItems)
 
   return (
     <CartContext.Provider

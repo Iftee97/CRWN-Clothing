@@ -112,7 +112,7 @@ export function CartContextUsingReducersProvider({ children }) {
     return updatedCartItems.reduce((accumulatedTotal, cartItem) => accumulatedTotal + cartItem.quantity * cartItem.price, 0)
   }
 
-  console.log('cartItems: >>>>>>>>>>', updatedCartItems)
+  // console.log('cartItems: >>>>>>>>>>', updatedCartItems)
 
   return (
     <CartContextUsingReducers.Provider
