@@ -15,16 +15,16 @@ export default function App() {
   // console.log('STRIPE_PUBLISHABLE_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY)
   // console.log('STRIPE_SECRET_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_SECRET_KEY)
 
-  useEffect(() => {
-    async function getServerlessResponse() {
-      const response = await fetch('https://crwn-clothing-silk.vercel.app/api/hello')
-      if (response.ok && response.status === 200) {
-        const data = await response.json()
-        console.log('data: >>>>>>>>>', data)
-      }
-    }
-    getServerlessResponse()
-  }, [])
+  // useEffect(() => {
+  //   async function getServerlessResponse() {
+  //     const response = await fetch('https://crwn-clothing-silk.vercel.app/api/hello')
+  //     if (response.ok && response.status === 200) {
+  //       const data = await response.json()
+  //       console.log('data: >>>>>>>>>', data)
+  //     }
+  //   }
+  //   getServerlessResponse()
+  // }, [])
 
   return (
     <>

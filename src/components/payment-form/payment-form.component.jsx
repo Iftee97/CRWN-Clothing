@@ -1,33 +1,59 @@
 import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../../contexts/cart.context'
 import { UserContext } from '../../contexts/user.context'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Button from '../button/button.component'
-import { createPaymentIntent } from '../../utils/stripe/createPaymentIntent'
-
 import './payment-form.styles.scss'
 
 export default function PaymentForm() {
   const { user } = useContext(UserContext)
-  const { getCartTotal } = useContext(CartContext)
+  const { getCartTotal, clearCart } = useContext(CartContext)
+  const navigate = useNavigate()
+
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false)
 
   const stripe = useStripe()
   const elements = useElements()
-  const amount = getCartTotal() * 100
-
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false)
+  const amount = getCartTotal()
 
   async function paymentHandler(e) {
     e.preventDefault()
     if (!stripe || !elements) {
       return
     }
-    const response = await createPaymentIntent(amount)
-    console.log('response: >>>>>>>>>>>>', response)
+    if (!user) {
+      alert('You must be logged in to make a payment.')
+      return
+    }
     try {
       setIsProcessingPayment(true)
+      const response = await fetch('http://localhost:3000/api/create-payment-intent', {
+        method: 'POST',
+        body: JSON.stringify({
+          amount: amount * 100,
+        }),
+      })
+      const data = await response.json()
+      const clientSecret = data.client_secret
+      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: user ? user.displayName : 'some username',
+          },
+        },
+      })
+      // console.log('paymentIntent: >>>>>>>>>', paymentIntent)
+      if (error) {
+        throw new Error(error.message)
+      } else if (paymentIntent.status === 'succeeded') {
+        clearCart()
+        navigate('/')
+        alert('Payment Successful!')
+      }
     } catch (error) {
-      console.log('error: >>>>>>>>>>>>', error)
+      alert(error.message)
     } finally {
       setIsProcessingPayment(false)
     }

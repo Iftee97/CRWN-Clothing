@@ -8,6 +8,7 @@ import CheckoutItem from '../../components/checkout-item/checkout-item.component
 
 export default function Checkout() {
   const { cartItems, getCartTotal } = useContext(CartContext)
+  const cartTotal = getCartTotal()
 
   return (
     <div className='checkout-container'>
@@ -44,9 +45,9 @@ export default function Checkout() {
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
           ))}
           <span className='total'>
-            Total: ${getCartTotal()}
+            Total: ${cartTotal.toLocaleString()}
           </span>
-          {/* <PaymentForm /> */}
+          <PaymentForm />
         </>
       ) : (
         <span className='empty-message'>

@@ -9,6 +9,7 @@ export default function Button({ children, buttonType, isLoading = false, ...oth
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      disabled={isLoading}
       {...otherProps}
     >
       {isLoading ? 'Loading...' : children}
