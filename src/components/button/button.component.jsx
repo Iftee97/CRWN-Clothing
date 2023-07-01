@@ -5,14 +5,14 @@ const BUTTON_TYPE_CLASSES = {
   inverted: 'inverted',
 }
 
-export default function Button({ children, buttonType, isLoading = false, ...otherProps }) {
+export default function Button({ children, buttonType, isLoading, ...otherProps }) {
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
       disabled={isLoading}
       {...otherProps}
     >
-      {isLoading ? 'Loading...' : children}
+      {isLoading ? 'loading...' : children}
     </button>
   )
 }
