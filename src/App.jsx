@@ -17,7 +17,7 @@ export default function App() {
 
   // useEffect(() => {
   //   async function getServerlessResponse() {
-  //     const response = await fetch('https://crwn-clothing-silk.vercel.app/api/hello')
+  //     const response = await fetch('https://crwn-clothing-iftee97.vercel.app/api/hello')
   //     if (response.ok && response.status === 200) {
   //       const data = await response.json()
   //       console.log('data: >>>>>>>>>', data)

@@ -29,7 +29,7 @@ export default function PaymentForm() {
     }
     try {
       setIsProcessingPayment(true)
-      const response = await fetch('https://crwn-clothing-silk.vercel.app/api/create-payment-intent', {
+      const response = await fetch('https://crwn-clothing-iftee97.vercel.app/api/create-payment-intent', {
         method: 'POST',
         body: JSON.stringify({
           amount: amount * 100,
