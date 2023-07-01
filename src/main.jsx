@@ -12,9 +12,6 @@ import { loadStripe } from '@stripe/stripe-js'
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY)
-const options = {
-  clientSecret: import.meta.env.VITE_APP_STRIPE_SECRET_KEY,
-}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
