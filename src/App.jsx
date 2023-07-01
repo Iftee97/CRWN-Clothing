@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { UserContext } from './contexts/user.context'
 
@@ -14,6 +14,17 @@ export default function App() {
 
   // console.log('STRIPE_PUBLISHABLE_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY)
   // console.log('STRIPE_SECRET_KEY: >>>>>>>>>', import.meta.env.VITE_APP_STRIPE_SECRET_KEY)
+
+  useEffect(() => {
+    async function getServerlessResponse() {
+      const response = await fetch('http://localhost:3000/api/hello')
+      if (response.ok && response.status === 200) {
+        const data = await response.json()
+        console.log('data: >>>>>>>>>', data)
+      }
+    }
+    getServerlessResponse()
+  }, [])
 
   return (
     <>
