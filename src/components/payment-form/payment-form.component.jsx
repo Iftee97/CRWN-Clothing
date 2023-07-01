@@ -23,12 +23,13 @@ export default function PaymentForm() {
       return
     }
     if (!user) {
+      navigate('/auth')
       alert('You must be logged in to make a payment.')
       return
     }
     try {
       setIsProcessingPayment(true)
-      const response = await fetch('http://localhost:3000/api/create-payment-intent', {
+      const response = await fetch('https://crwn-clothing-silk.vercel.app/api/create-payment-intent', {
         method: 'POST',
         body: JSON.stringify({
           amount: amount * 100,
@@ -44,7 +45,7 @@ export default function PaymentForm() {
           },
         },
       })
-      // console.log('paymentIntent: >>>>>>>>>', paymentIntent)
+      console.log('paymentIntent: >>>>>>>>>', paymentIntent)
       if (error) {
         throw new Error(error.message)
       } else if (paymentIntent.status === 'succeeded') {

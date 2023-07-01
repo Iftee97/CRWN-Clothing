@@ -7,7 +7,6 @@ import './category.styles.scss'
 export default function Category() {
   const { category } = useParams()
   const { categories } = useContext(CategoriesContext)
-  console.log('categories (category): >>>>>>>>>>', categories)
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -16,12 +15,6 @@ export default function Category() {
       setProducts(c.items)
     }
   }, [categories, category])
-
-  useEffect(() => {
-    if (products?.length > 0) {
-      console.log('products (category): >>>>>>>>>>', products)
-    }
-  }, [products])
 
   return (
     <>

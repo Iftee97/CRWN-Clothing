@@ -8,7 +8,6 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
-
 import './sign-up-form.styles.scss'
 
 export default function SignUpForm() {
@@ -44,7 +43,7 @@ export default function SignUpForm() {
 
       const response = await createUserWithEmailAndPassword(auth, email, password)
       const user = response.user
-      console.log('signed up user: >>>>>>>>>>>>>>>>', user)
+      // console.log('signed up user: >>>>>>>>>>>>>>>>', user)
       dispatch({ type: 'LOGIN', payload: user })
 
       await updateProfile(user, { displayName }) // update user profile with displayName
@@ -56,7 +55,7 @@ export default function SignUpForm() {
 
       setLoading(false)
     } catch (error) {
-      console.log('error creating user!', error.message)
+      // console.log('error creating user!', error.message)
       alert(error.message)
       setLoading(false)
     } finally {
