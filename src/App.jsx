@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     async function getServerlessResponse() {
-      const response = await fetch('http://localhost:3000/api/hello')
+      const response = await fetch('https://crwn-clothing-silk.vercel.app/api/hello')
       if (response.ok && response.status === 200) {
         const data = await response.json()
         console.log('data: >>>>>>>>>', data)

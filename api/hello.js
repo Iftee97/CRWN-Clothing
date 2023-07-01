@@ -6,5 +6,4 @@ export default async function handler(request, response) {
   })
 }
 
-// vercel dev to run serverless functions locally
-// vercel --prod to deploy to production
+// vercel --prod to deploy serverless function to production
