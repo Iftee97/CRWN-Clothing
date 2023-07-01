@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/cart.context'
+import PaymentForm from '../../components/payment-form/payment-form.component'
 
 import './checkout.styles.scss'
 
@@ -45,6 +46,7 @@ export default function Checkout() {
           <span className='total'>
             Total: ${getCartTotal()}
           </span>
+          {/* <PaymentForm /> */}
         </>
       ) : (
         <span className='empty-message'>
