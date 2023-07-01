@@ -8,7 +8,6 @@ import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
-
 import './sign-in-form.styles.scss'
 
 import { FaGoogle } from "react-icons/fa"
@@ -38,11 +37,11 @@ export default function SignInForm() {
       setLoading(true)
       const response = await signInWithEmailAndPassword(auth, email, password)
       const user = response.user
-      console.log('signed in user: >>>>>>>>>>>>>>>>', user)
+      // console.log('signed in user: >>>>>>>>>>>>>>>>', user)
       dispatch({ type: 'LOGIN', payload: user })
       setLoading(false)
     } catch (error) {
-      console.log('error signing in user!', error.message)
+      // console.log('error signing in user!', error.message)
       alert(error.message)
       setLoading(false)
     } finally {
@@ -59,7 +58,7 @@ export default function SignInForm() {
       const provider = new GoogleAuthProvider()
       const response = await signInWithPopup(auth, provider)
       const user = response.user
-      console.log('signed in user: >>>>>>>>>>>>>>>>', user)
+      // console.log('signed in user: >>>>>>>>>>>>>>>>', user)
       dispatch({ type: 'LOGIN', payload: user })
 
       // // Check for user in firestore db -- if user doesn't exist in db, add user to db
@@ -72,7 +71,7 @@ export default function SignInForm() {
         })
       }
     } catch (error) {
-      console.log("error creating user!", error.message)
+      // console.log("error creating user!", error.message)
       alert(error.message)
     } finally {
       navigate('/') // redirect to home page

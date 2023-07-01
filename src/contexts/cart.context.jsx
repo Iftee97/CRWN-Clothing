@@ -55,7 +55,9 @@ export function CartContextProvider({ children }) {
     ), 0)
   }
 
-  // console.log('cartItems: >>>>>>>>>>', cartItems)
+  function clearCart() {
+    setCartItems([])
+  }
 
   return (
     <CartContext.Provider
@@ -65,11 +67,12 @@ export function CartContextProvider({ children }) {
         cartItems,
         setCartItems,
         addItemToCart,
-        getCartItemsCount,
         increaseQuantity,
         decreaseQuantity,
         removeItemFromCart,
         getCartTotal,
+        getCartItemsCount,
+        clearCart,
       }}
     >
       {children}

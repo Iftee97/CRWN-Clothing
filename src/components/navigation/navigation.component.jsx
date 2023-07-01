@@ -44,7 +44,9 @@ export default function Navigation() {
         {user ? (
           <>
             <span className='nav-link' onClick={handleSignOut}>
-              SIGN OUT
+              <span className='nav-link--signOut'>
+                SIGN OUT
+              </span>
             </span>
             <span className='nav-link'>
               {user.displayName && (

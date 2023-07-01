@@ -1,13 +1,12 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/cart.context'
-import PaymentForm from '../../components/payment-form/payment-form.component'
-
-import './checkout.styles.scss'
-
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
+import PaymentForm from '../../components/payment-form/payment-form.component'
+import './checkout.styles.scss'
 
 export default function Checkout() {
   const { cartItems, getCartTotal } = useContext(CartContext)
+  const cartTotal = getCartTotal()
 
   return (
     <div className='checkout-container'>
@@ -44,9 +43,9 @@ export default function Checkout() {
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
           ))}
           <span className='total'>
-            Total: ${getCartTotal()}
+            Total: ${cartTotal.toLocaleString()}
           </span>
-          {/* <PaymentForm /> */}
+          <PaymentForm />
         </>
       ) : (
         <span className='empty-message'>

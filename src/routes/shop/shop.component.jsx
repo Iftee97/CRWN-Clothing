@@ -5,7 +5,6 @@ import './shop.styles.scss'
 
 export default function Shop() {
   const { categories } = useContext(CategoriesContext)
-  console.log('categories: >>>>>>>>>', categories)
 
   return (
     <div className='shop-container'>
