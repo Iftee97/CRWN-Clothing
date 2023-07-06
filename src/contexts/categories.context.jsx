@@ -40,6 +40,8 @@ export function CategoriesContextProvider({ children }) {
     })
   }, [])
 
+  console.log('categories: >>>>>>>>>', categories)
+
   return (
     <CategoriesContext.Provider value={{ categories }}>
       {children}
